@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マッスルン - あなた専属トレーニングコーチ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+
+    <div class="app-header">
+      <h1>💪 マッスルン</h1>
+    </div>
+
+    <!-- プロフィール設定画面 -->
+  <div id="profile-screen" class="screen">
+
+    <!-- マッスルンの案内 -->
+    <div class="profile-onboarding">
+      <div class="profile-mascot-wrap">
+        <div class="speech-bubble" id="profile-speech">
+          はじめまして！ボクはマッスルン！<br>まずはきみのことを教えてね🌟
+        </div>
+        <div class="character small">
+          <div class="char-head">
+            <div class="char-headband"></div>
+            <div class="char-eyes">
+              <div class="char-eye"></div>
+              <div class="char-eye"></div>
+            </div>
+            <div class="char-mouth"></div>
+            <div class="char-cheek char-cheek-l"></div>
+            <div class="char-cheek char-cheek-r"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-container">
+      <h2>👤 プロフィール設定</h2>
+      <p class="subtitle">きみに合ったトレーニングメニューを考えるために、少しだけ教えてね！</p>
+
+      <div class="form-group">
+        <label>性別</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="gender" value="male" checked>
+            <span>👨 男性</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="gender" value="female">
+            <span>👩 女性</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>トレーニング目標</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="goal" value="bulk" checked>
+            <span>💪 筋肥大（バルクアップ）</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="goal" value="tone">
+            <span>✨ 引き締め（ボディメイク）</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="goal" value="strength">
+            <span>⚡ 筋力向上</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="goal" value="endurance">
+            <span>🏃 持久力・体力向上</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>経験レベル</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="level" value="beginner" checked>
+            <span>🌱 初心者（3ヶ月未満）</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="level" value="intermediate">
+            <span>💪 中級者（3ヶ月〜1年）</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="level" value="advanced">
+            <span>🔥 上級者（1年以上）</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>普段の運動量</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="activityLevel" value="sedentary" checked>
+            <span>🪑 少ない（デスクワーク中心）</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="activityLevel" value="moderate">
+            <span>🚶 普通（通勤・家事など適度に動く）</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="activityLevel" value="active">
+            <span>🏃 多い（肉体労働・日常的に運動）</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>身体情報</label>
+        <div class="body-info-inputs">
+          <div class="body-info-field">
+            <input type="number" id="input-height" value="170" min="100" max="220">
+            <span class="body-info-unit">cm</span>
+          </div>
+          <div class="body-info-field">
+            <input type="number" id="input-weight" value="65" min="30" max="200">
+            <span class="body-info-unit">kg</span>
+          </div>
+          <div class="body-info-field">
+            <input type="number" id="input-age" value="25" min="10" max="100">
+            <span class="body-info-unit">歳</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>1日の目標カロリー（任意）</label>
+        <div class="body-info-inputs">
+          <div class="body-info-field">
+            <input type="number" id="input-calorie-goal" placeholder="自動計算" min="500" max="8000">
+            <span class="body-info-unit">kcal</span>
+          </div>
+        </div>
+        <p class="form-hint">空欄のままにするとTDEEから自動計算します</p>
+      </div>
+
+      <button id="save-profile-btn" class="primary-btn">プロフィールを保存</button>
+    </div>
+  </div>
+
+  <!-- メインメニュー画面 -->
+  <div id="menu-screen" class="screen hidden">
+    <!-- ユーザー情報バー -->
+    <div class="user-info-bar">
+      <div class="user-stats">
+        <span id="user-display">👨 筋肥大 | 🌱 初心者</span>
+        <span>📊 総回数: <strong id="total-count">0</strong></span>
+      </div>
+      <div class="user-actions">
+        <button id="chat-btn" class="icon-btn"><span class="icon-emoji">💬</span><span class="icon-label">チャット</span></button>
+        <button id="meal-btn" class="icon-btn"><span class="icon-emoji">🍗</span><span class="icon-label">食事</span></button>
+        <button id="weight-btn" class="icon-btn"><span class="icon-emoji">⚖️</span><span class="icon-label">体重</span></button>
+        <button id="stretch-btn" class="icon-btn"><span class="icon-emoji">🧘</span><span class="icon-label">ストレッチ</span></button>
+        <button id="analysis-btn" class="icon-btn"><span class="icon-emoji">📊</span><span class="icon-label">分析</span></button>
+        <button id="achievement-btn" class="icon-btn"><span class="icon-emoji">🏅</span><span class="icon-label">バッジ</span></button>
+        <button id="edit-profile-btn" class="icon-btn"><span class="icon-emoji">⚙️</span><span class="icon-label">設定</span></button>
+      </div>
+    </div>
+
+    <!-- レベル＆経験値パネル -->
+    <div class="level-panel">
+      <div class="level-info">
+        <div class="level-badge">
+          <span class="level-number">Lv.<span id="level">1</span></span>
+          <span class="level-title" id="level-title">💪 トレーニング初心者</span>
+        </div>
+      </div>
+      <div class="exp-container">
+        <div class="exp-bar-bg">
+          <div class="exp-bar" id="exp-bar"></div>
+          <div class="exp-shine"></div>
+        </div>
+        <div class="exp-text">
+          <span id="current-exp">0</span> / <span id="required-exp">100</span> EXP
+        </div>
+      </div>
+    </div>
+
+    <!-- マッスルンのキャラクター -->
+    <div id="mascot" class="mascot idle">
+      <div class="speech-bubble" id="speech-bubble">
+        今日はどこを鍛える？いっしょにがんばろ！
+      </div>
+      <div class="character">
+        <div class="char-arm char-arm-left"></div>
+        <div class="char-arm char-arm-right"></div>
+        <div class="char-head">
+          <div class="char-headband"></div>
+          <div class="char-eyes">
+            <div class="char-eye"></div>
+            <div class="char-eye"></div>
+          </div>
+          <div class="char-mouth" id="mascot-mouth"></div>
+          <div class="char-cheek char-cheek-l"></div>
+          <div class="char-cheek char-cheek-r"></div>
+        </div>
+        <div class="char-body">
+          <div class="char-chest-line"></div>
+        </div>
+        <div class="char-legs">
+          <div class="char-leg"></div>
+          <div class="char-leg"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カロリー収支サマリー -->
+    <div class="calorie-summary-panel" id="calorie-summary">
+      <div class="calorie-summary-title">今日のカロリー収支</div>
+      <div class="calorie-summary-grid five-col">
+        <div class="calorie-item">
+          <div class="calorie-value" id="summary-bmr">0</div>
+          <div class="calorie-label">基礎代謝</div>
+        </div>
+        <div class="calorie-item">
+          <div class="calorie-value" id="summary-tdee">0</div>
+          <div class="calorie-label">活動代謝</div>
+        </div>
+        <div class="calorie-item">
+          <div class="calorie-value" id="summary-burned">0</div>
+          <div class="calorie-label">運動消費</div>
+        </div>
+        <div class="calorie-item">
+          <div class="calorie-value" id="summary-intake">0</div>
+          <div class="calorie-label">摂取</div>
+        </div>
+        <div class="calorie-item">
+          <div class="calorie-value" id="summary-balance">0</div>
+          <div class="calorie-label">収支差</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- おまかせメニューボタン -->
+    <div class="ai-menu-section">
+      <button id="ai-menu-btn" class="ai-menu-btn">
+        マッスルンに今日のメニューを考えてもらう
+      </button>
+    </div>
+
+    <!-- AIメニュー表示エリア -->
+    <div id="ai-menu-result" class="ai-menu-result hidden"></div>
+
+    <!-- トレーニングカテゴリー選択 -->
+    <div class="menu-section">
+      <h2>自分で部位を選ぶ</h2>
+      <div class="category-grid">
+        <button class="category-btn" data-category="chest">
+          <span class="icon">🫁</span>
+          <span class="name">胸</span>
+        </button>
+        <button class="category-btn" data-category="back">
+          <span class="icon">🦴</span>
+          <span class="name">背中</span>
+        </button>
+        <button class="category-btn" data-category="legs">
+          <span class="icon">🦵</span>
+          <span class="name">脚</span>
+        </button>
+        <button class="category-btn" data-category="shoulders">
+          <span class="icon">🏔️</span>
+          <span class="name">肩</span>
+        </button>
+        <button class="category-btn" data-category="arms">
+          <span class="icon">💪</span>
+          <span class="name">腕</span>
+        </button>
+        <button class="category-btn" data-category="abs">
+          <span class="icon">🔥</span>
+          <span class="name">腹筋</span>
+        </button>
+        <button class="category-btn" data-category="cardio">
+          <span class="icon">🏃</span>
+          <span class="name">有酸素</span>
+        </button>
+        <button class="category-btn" data-category="fullbody">
+          <span class="icon">🌟</span>
+          <span class="name">全身</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- エクササイズ選択画面 -->
+  <div id="exercise-screen" class="screen hidden">
+    <button id="back-to-menu" class="back-btn">← メニューに戻る</button>
+
+    <div class="exercise-list-container">
+      <h2 id="exercise-category-title">胸トレ</h2>
+      <div id="recommended-section">
+        <p class="recommended-tag" id="recommended-text">あなたにおすすめ</p>
+        <div id="exercise-list" class="exercise-grid"></div>
+      </div>
+      <div id="all-exercises-section">
+        <p class="all-exercises-tag">すべてのメニュー</p>
+        <div id="all-exercise-list" class="exercise-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- トレーニング実行画面 -->
+  <div id="training-screen" class="screen hidden">
+    <button id="stop-training" class="back-btn">✕ 中断</button>
+
+    <div class="training-container">
+      <!-- マッスルンのコーチング -->
+      <div id="training-mascot" class="mascot training">
+        <div class="speech-bubble large" id="training-speech">
+          さあ、はじめよ！ボクが見てるから全力でね！
+        </div>
+        <div class="character">
+          <div class="char-arm char-arm-left"></div>
+          <div class="char-arm char-arm-right"></div>
+          <div class="char-head">
+            <div class="char-headband"></div>
+            <div class="char-eyes">
+              <div class="char-eye"></div>
+              <div class="char-eye"></div>
+            </div>
+            <div class="char-mouth" id="training-mascot-mouth"></div>
+            <div class="char-cheek char-cheek-l"></div>
+            <div class="char-cheek char-cheek-r"></div>
+          </div>
+          <div class="char-body">
+            <div class="char-chest-line"></div>
+          </div>
+          <div class="char-legs">
+            <div class="char-leg"></div>
+            <div class="char-leg"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- トレーニング情報 -->
+      <div class="training-info">
+        <h2 id="current-exercise-name">腕立て伏せ</h2>
+        <div class="set-progress">
+          <span id="current-set">1</span> / <span id="total-sets">3</span> セット
+        </div>
+      </div>
+
+      <!-- コツ表示 -->
+      <div id="tips-panel" class="tips-panel hidden">
+        <div class="tips-header">ポイント</div>
+        <ul id="tips-list" class="tips-list"></ul>
+      </div>
+
+      <!-- 目標表示 -->
+      <div class="counter-display">
+        <div class="target-reps">目標: <span id="target-reps">10回</span></div>
+      </div>
+
+      <!-- 使用重量入力 -->
+      <div class="weight-input-row" id="weight-input-row">
+        <label class="weight-input-label">使用重量 (kg)</label>
+        <input type="number" id="training-weight-input" class="training-weight-input" placeholder="0" min="0" max="500" step="0.5">
+        <span class="weight-input-unit">kg</span>
+      </div>
+
+      <!-- コントロールボタン -->
+      <div class="training-controls">
+        <button id="next-set-btn" class="count-btn">✅ セット完了！</button>
+        <button id="rest-timer-btn" class="control-btn">⏸️ 休憩する</button>
+      </div>
+
+      <!-- 休憩タイマー -->
+      <div id="rest-timer" class="rest-timer hidden">
+        <div class="timer-display">
+          <div class="timer-label">休憩中...</div>
+          <div class="timer-number" id="rest-time">60</div>
+          <div class="timer-unit">秒</div>
+        </div>
+        <button id="skip-rest-btn" class="secondary-btn">休憩スキップ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分析画面 -->
+  <div id="analysis-screen" class="screen hidden">
+    <button id="back-to-menu-from-analysis" class="back-btn">← メニューに戻る</button>
+
+    <h2>トレーニング分析</h2>
+
+    <!-- サマリーカード -->
+    <div class="analysis-summary">
+      <div class="summary-card">
+        <div class="summary-value" id="total-sessions">0</div>
+        <div class="summary-label">総セッション</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-value" id="this-week-sessions">0</div>
+        <div class="summary-label">今週</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-value" id="streak-days">0</div>
+        <div class="summary-label">連続日数</div>
+      </div>
+    </div>
+
+    <!-- 週次サマリー -->
+    <div class="analysis-section">
+      <h3>📅 今週のサマリー</h3>
+      <div id="weekly-summary" class="weekly-summary"></div>
+    </div>
+
+    <!-- 部位バランス -->
+    <div class="analysis-section">
+      <h3>部位バランス</h3>
+      <div id="category-chart" class="category-chart"></div>
+    </div>
+
+    <!-- 今日の栄養 -->
+    <div class="analysis-section">
+      <h3>今日の栄養摂取</h3>
+      <div id="analysis-meal-summary" class="analysis-meal-summary"></div>
+    </div>
+
+    <!-- 最近のトレーニング -->
+    <div class="analysis-section">
+      <h3>最近のトレーニング</h3>
+      <input type="text" id="history-filter" class="history-filter-input" placeholder="🔍 メニュー名で絞り込む">
+      <div id="history-list" class="history-list"></div>
+    </div>
+
+    <!-- AIアドバイス -->
+    <div class="analysis-section">
+      <button id="ai-advice-btn" class="ai-menu-btn">マッスルンのアドバイスを聞く</button>
+      <div id="ai-advice-result" class="ai-advice-result hidden"></div>
+    </div>
+
+    <!-- レベルリセット -->
+    <div class="analysis-section">
+      <button id="level-reset-btn" class="level-reset-btn">⚠️ レベルをリセット</button>
+    </div>
+  </div>
+
+  <!-- バッジ一覧画面 -->
+  <div id="achievement-screen" class="screen hidden">
+    <button id="back-to-menu-from-achievement" class="back-btn">← メニューに戻る</button>
+    <div class="achievement-container">
+      <h2>🏅 バッジ一覧</h2>
+      <p class="achievement-count-text">獲得済み: <strong id="achievement-count">0 / 27</strong></p>
+      <div id="achievement-list"></div>
+    </div>
+  </div>
+
+  <!-- チャット画面 -->
+  <div id="chat-screen" class="screen hidden">
+    <button id="back-to-menu-from-chat" class="back-btn">← メニューに戻る</button>
+
+    <div class="chat-container">
+      <!-- チャットヘッダー -->
+      <div class="chat-header">
+        <div class="character small">
+          <div class="char-head">
+            <div class="char-headband"></div>
+            <div class="char-eyes">
+              <div class="char-eye"></div>
+              <div class="char-eye"></div>
+            </div>
+            <div class="char-mouth"></div>
+            <div class="char-cheek char-cheek-l"></div>
+            <div class="char-cheek char-cheek-r"></div>
+          </div>
+        </div>
+        <div class="chat-header-info">
+          <h3>マッスルンに相談</h3>
+          <span class="chat-status">オンライン</span>
+        </div>
+      </div>
+
+      <!-- メッセージエリア -->
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-msg mascot-msg">
+          <div class="msg-bubble">やっほー！何でも聞いてね！フォーム、食事、メニューの相談、何でもOKだよ！</div>
+        </div>
+      </div>
+
+      <!-- クイック質問 -->
+      <div id="chat-suggestions" class="chat-suggestions">
+        <button class="suggestion-chip" data-q="筋トレ後の食事は何がいい？">食事の相談</button>
+        <button class="suggestion-chip" data-q="筋肉痛がひどいけど筋トレしていい？">筋肉痛について</button>
+        <button class="suggestion-chip" data-q="モチベーションが上がらない...">やる気が出ない</button>
+        <button class="suggestion-chip" data-q="効率よく筋肉をつけるコツは？">効率的な鍛え方</button>
+      </div>
+
+      <!-- 入力エリア -->
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" class="chat-input" placeholder="マッスルンに質問する..." autocomplete="off">
+        <button id="chat-send-btn" class="chat-send-btn">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 食事記録画面 -->
+  <div id="meal-screen" class="screen hidden">
+    <button id="back-to-menu-from-meal" class="back-btn">← メニューに戻る</button>
+
+    <h2>🍗 食事記録</h2>
+
+    <!-- 今日のサマリー -->
+    <div class="meal-daily-summary">
+      <div class="meal-summary-header">今日の栄養</div>
+      <div class="meal-summary-stats">
+        <div class="meal-stat">
+          <div class="meal-stat-value" id="today-protein">0</div>
+          <div class="meal-stat-unit">g</div>
+          <div class="meal-stat-label">タンパク質</div>
+        </div>
+        <div class="meal-stat">
+          <div class="meal-stat-value" id="today-calories">0</div>
+          <div class="meal-stat-unit">kcal</div>
+          <div class="meal-stat-label">カロリー</div>
+        </div>
+        <div class="meal-stat">
+          <div class="meal-stat-value" id="today-meals">0</div>
+          <div class="meal-stat-unit">回</div>
+          <div class="meal-stat-label">食事回数</div>
+        </div>
+      </div>
+      <div class="protein-goal-bar">
+        <div class="protein-goal-label">
+          タンパク質目標: <span id="protein-goal-text">0 / 120g</span>
+        </div>
+        <div class="protein-bar-bg">
+          <div class="protein-bar-fill" id="protein-bar"></div>
+        </div>
+      </div>
+      <div class="bmr-warning hidden" id="bmr-warning"></div>
+    </div>
+
+    <!-- 食事タイプ選択 -->
+    <div class="meal-type-selector">
+      <button class="meal-type-btn active" data-type="breakfast">🌅 朝食</button>
+      <button class="meal-type-btn" data-type="lunch">☀️ 昼食</button>
+      <button class="meal-type-btn" data-type="dinner">🌙 夕食</button>
+      <button class="meal-type-btn" data-type="snack">🥤 間食</button>
+    </div>
+
+    <!-- クイック追加 -->
+    <div class="meal-quick-section">
+      <h3>よく食べるもの</h3>
+      <div class="meal-quick-grid" id="meal-quick-grid"></div>
+    </div>
+
+    <!-- 食品カロリー検索 -->
+    <div class="meal-search-section">
+      <h3>🔍 カロリーを調べる</h3>
+      <p class="meal-search-hint">食べたものを入力するとAIがWebで調べてくれるよ！</p>
+      <div class="meal-search-row">
+        <input type="text" id="food-search-input" class="meal-input" placeholder="例: ラーメン、おにぎり1個…">
+        <button id="food-search-btn" class="food-search-btn">調べる</button>
+      </div>
+      <div id="food-search-result" class="food-search-result hidden"></div>
+    </div>
+
+    <!-- 手動入力 -->
+    <div class="meal-manual-section">
+      <h3>自分で入力</h3>
+      <div class="meal-input-row">
+        <input type="text" id="meal-name-input" class="meal-input" placeholder="食べたもの">
+      </div>
+      <div class="meal-input-row meal-input-row-sub">
+        <input type="number" id="meal-protein-input" class="meal-input small" placeholder="P(g)">
+        <input type="number" id="meal-fat-input" class="meal-input small" placeholder="F(g)">
+        <input type="number" id="meal-carb-input" class="meal-input small" placeholder="C(g)">
+        <input type="number" id="meal-cal-input" class="meal-input small" placeholder="kcal">
+        <button id="meal-add-btn" class="meal-add-btn">+</button>
+      </div>
+    </div>
+
+    <!-- 今日の記録リスト -->
+    <div class="meal-history-section">
+      <h3>今日の食事</h3>
+      <div id="today-meal-list" class="today-meal-list"></div>
+    </div>
+
+    <!-- 水分摂取トラッカー -->
+    <div class="water-tracker-section">
+      <h3>💧 水分摂取</h3>
+      <div class="water-tracker">
+        <div class="water-cups" id="water-cups"></div>
+        <div class="water-controls">
+          <button id="water-minus-btn" class="water-btn">－</button>
+          <span class="water-count"><span id="water-current">0</span> / 8 杯</span>
+          <button id="water-plus-btn" class="water-btn">＋</button>
+        </div>
+        <div class="water-bar-bg">
+          <div class="water-bar-fill" id="water-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PFCバランス -->
+    <div class="pfc-section" id="pfc-section">
+      <h3>今日のPFCバランス</h3>
+      <div id="pfc-chart" class="pfc-chart"></div>
+    </div>
+
+    <!-- 過去1ヶ月の記録 -->
+    <div class="meal-monthly-section">
+      <h3>📅 過去1ヶ月の記録</h3>
+      <div id="monthly-meal-list" class="monthly-meal-list"></div>
+    </div>
+
+    <!-- AIに食事アドバイス -->
+    <button id="meal-ai-btn" class="ai-menu-btn">マッスルンに食事アドバイスを聞く</button>
+    <div id="meal-ai-result" class="ai-advice-result hidden"></div>
+  </div>
+
+  <!-- 完了画面 -->
+  <div id="complete-screen" class="screen hidden">
+    <div class="complete-container">
+      <div class="complete-icon">🎉</div>
+      <h2>お疲れ様！</h2>
+      <div class="complete-stats">
+        <p><strong id="completed-exercise">腕立て伏せ</strong> を完了しました！</p>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number" id="completed-sets">3</div>
+            <div class="stat-label">セット</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="completed-reps">30</div>
+            <div class="stat-label">総回数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="burned-cal">0</div>
+            <div class="stat-label">kcal消費</div>
+          </div>
+          <div class="stat-item exp-gained">
+            <div class="stat-number exp-number">+<span id="gained-exp">25</span></div>
+            <div class="stat-label">EXP</div>
+          </div>
+          <div class="stat-item bonus-exp-item hidden" id="bonus-exp-item">
+            <div class="stat-number bonus-number">+<span id="bonus-exp">0</span></div>
+            <div class="stat-label">ボーナスEXP</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- トレッドミルなど：マシン表示カロリーを手入力 -->
+      <div id="manual-cal-section" class="manual-cal-section hidden">
+        <p class="manual-cal-hint">🏃 マシンに表示されたカロリーがあれば書き換えてね！</p>
+        <div class="manual-cal-row">
+          <input type="number" id="manual-cal-input" class="manual-cal-input" min="0" max="9999" placeholder="kcal">
+          <span class="manual-cal-unit">kcal</span>
+          <button id="manual-cal-apply-btn" class="manual-cal-apply-btn">確定</button>
+        </div>
+      </div>
+
+      <div class="mascot-message">
+        <div class="character small">
+          <div class="char-head">
+            <div class="char-headband"></div>
+            <div class="char-eyes">
+              <div class="char-eye"></div>
+              <div class="char-eye"></div>
+            </div>
+            <div class="char-mouth"></div>
+            <div class="char-cheek char-cheek-l"></div>
+            <div class="char-cheek char-cheek-r"></div>
+          </div>
+        </div>
+        <p id="complete-message">よくやった！その調子だ！</p>
+      </div>
+      <div class="complete-actions">
+        <button id="continue-training-btn" class="primary-btn">続けてトレーニング</button>
+        <button id="finish-training-btn" class="secondary-btn">今日は終了</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 体重記録画面 -->
+  <div id="weight-screen" class="screen hidden">
+    <button id="back-to-menu-from-weight" class="back-btn">← メニューに戻る</button>
+    <h2>⚖️ 体重記録</h2>
+
+    <!-- 今日の体重入力 -->
+    <div class="weight-input-section">
+      <div class="weight-today-input">
+        <input type="number" id="weight-today-input" class="weight-today-field" placeholder="0.0" min="20" max="300" step="0.1">
+        <span class="weight-today-unit">kg</span>
+        <button id="weight-save-btn" class="weight-save-btn">記録する</button>
+      </div>
+    </div>
+
+    <!-- 体重グラフ -->
+    <div class="weight-graph-section">
+      <h3>過去30日の推移</h3>
+      <div id="weight-graph" class="weight-graph"></div>
+    </div>
+
+    <!-- 体重履歴リスト -->
+    <div class="weight-history-section">
+      <h3>記録一覧</h3>
+      <div id="weight-history-list" class="weight-history-list"></div>
+    </div>
+  </div>
+
+  <!-- ストレッチ・ウォームアップ画面 -->
+  <div id="stretch-screen" class="screen hidden">
+    <button id="back-to-menu-from-stretch" class="back-btn">← メニューに戻る</button>
+    <h2>🧘 ストレッチ</h2>
+
+    <div class="stretch-tabs">
+      <button class="stretch-tab active" data-phase="warmup">ウォームアップ</button>
+      <button class="stretch-tab" data-phase="cooldown">クールダウン</button>
+    </div>
+
+    <div id="stretch-list" class="stretch-list"></div>
+
+    <!-- タイマー -->
+    <div id="stretch-timer-panel" class="stretch-timer-panel hidden">
+      <div class="stretch-timer-name" id="stretch-timer-name"></div>
+      <div class="stretch-timer-circle">
+        <svg class="stretch-svg" viewBox="0 0 100 100">
+          <circle class="stretch-svg-bg" cx="50" cy="50" r="44"/>
+          <circle class="stretch-svg-fill" id="stretch-svg-fill" cx="50" cy="50" r="44"
+            stroke-dasharray="276.46" stroke-dashoffset="0"/>
+        </svg>
+        <div class="stretch-timer-number" id="stretch-timer-number">0</div>
+      </div>
+      <button id="stretch-skip-btn" class="secondary-btn">スキップ</button>
+    </div>
+  </div>
+
+  <!-- レベルアップモーダル -->
+  <div id="levelup-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content levelup-content">
+      <div class="levelup-icon">⚡🎊⚡</div>
+      <h2 class="levelup-title">LEVEL UP!</h2>
+      <div class="new-level-display">
+        <div class="level-number-big">Lv.<span id="new-level">2</span></div>
+        <div class="new-title" id="new-title">💪 トレーニング初心者</div>
+      </div>
+      <p class="levelup-message" id="levelup-message">よくやった！さらに強くなったぜ！</p>
+      <button id="close-levelup" class="primary-btn">ありがとう！</button>
+    </div>
+  </div>
+
+  </div> <!-- app-container -->
+
+  <script src="script.js"></script>
+</body>
+</html>
